@@ -85,3 +85,7 @@ end
 function math.hypot(a, b)
 	return math.sqrt(a^2 + b^2)
 end
+
+function gcd(a, b)
+    return b == 0 and a or gcd(b, a%b)
+end

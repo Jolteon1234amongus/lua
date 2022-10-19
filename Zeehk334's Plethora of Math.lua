@@ -85,7 +85,7 @@ end
 function round(a, b)
     if b == nil or b == 0 then
         if tonumber(string.sub(tostring(math.fPart(a)), 1, 1)) > 4 then
-            return math.iPart(a) + math.sign(a) --might be a problem if sign is 0
+            return math.iPart(a) + math.sign(a)
         else
             return math.iPart(a)
         end

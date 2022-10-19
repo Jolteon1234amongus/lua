@@ -82,10 +82,39 @@ function math.sign(a)
 	end
 end
 
+function round(a, b)
+    if b == nil or b == 0 then
+        if tonumber(string.sub(tostring(math.fPart(a)), 1, 1)) > 4 then
+            return math.iPart(a) + math.sign(a) --might be a problem if sign is 0
+        else
+            return math.iPart(a)
+        end
+    else
+        for i = 1, b + 1, 1 do
+            if tonumber(string.sub(tostring(math.fPart(a)), i + 1, i + 1)) > 4 then
+                return tonumber(math.iPart(a).."."..tonumber(string.sub(tostring(math.fPart(a)), 1, i)) + 1)
+            else
+                return tonumber(math.iPart(a).."."..tonumber(string.sub(tostring(math.fPart(a)), 1, i)))
+            end
+        end
+    end
+end
+
 function math.hypot(a, b)
 	return math.sqrt(a^2 + b^2)
 end
 
 function gcd(a, b)
-    return b == 0 and a or gcd(b, a%b)
+    c = math.max(a, b)
+    d = math.min(a, b)
+    if d ~= 0 then
+        local e
+        repeat
+            e = d
+            d = c%d
+        until(d == 0)
+        return e
+    elseif d == 0 then
+        return c
+    end
 end

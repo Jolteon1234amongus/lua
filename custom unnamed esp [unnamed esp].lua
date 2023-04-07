@@ -80,6 +80,16 @@ end
 
 local function Set(t, i, v) t[i] = v end
 
+function cap(a)
+	local b = string.split((string.gsub(a,"[(.)(%d)]","")),"_")
+	local c = ""
+	for i = 1, #b do
+		c = c..string.upper(string.sub(b[i], 1, 1))..string.sub(b[i], 2, #b[i]).." "
+	end
+	c = string.sub(c, 1, #c - 1)
+	return c
+end
+
 local narutogameid = 0
 if game:GetService("StarterPlayer").StarterCharacterScripts:FindFirstChild("MiscHandler") then
 	narutogameid = game.GameId
@@ -508,6 +518,54 @@ local Modules = {
 
 			return Name;
 		end;
+		CustomESP = function()
+			for i, v in pairs(game.Workspace.Live:GetDescendants()) do
+				if v:IsA("Humanoid") then
+					if not game.Players:FindFirstChild(tostring(v.Parent)) then
+						if v.Parent:FindFirstChild("Head") then
+							local hum = v;
+							local head = v.Parent.Head;
+							local enhancement = "Neutral";
+
+						--[[local enhancement;
+						
+						if enhanced then --find later
+							enhancement = " [Corrupted]";
+						else
+							enhancement = " [Neutral]";
+						end
+						if enhancement == nil then
+							enhancement = "";
+						end]]
+
+							if hum and head then
+								pcall(RenderList.AddOrUpdateInstance, RenderList, v, head, cap(v.Parent.Name).."\n["..math.round(hum.Health).."/"..math.round(hum.MaxHealth).."] ["..enhancement.."] ["..math.round(hum.Health / hum.MaxHealth * 100).." %]", Color3.fromRGB(232, 255, 219));
+							end
+						end
+					end
+				end
+			end
+			for i, v in pairs(game.Workspace.Thrown:GetDescendants()) do
+				if v.Name == "ChestJoint" then
+					local rp = v.Parent.Parent.RootPart;
+
+					if rp then
+						pcall(RenderList.AddOrUpdateInstance, RenderList, v, rp, "Chest", Color3.fromRGB(255, 155, 105));
+					end
+				elseif v.Name == "BagDrop" then
+					pcall(RenderList.AddOrUpdateInstance, RenderList, v, v, "Bag", Color3.fromRGB(255, 155, 105));
+				elseif v.Name == "HoldForge" then
+					pcall(RenderList.AddOrUpdateInstance, RenderList, v.Parent, v, "Artifact", Color3.fromRGB(216, 202, 229));
+				end
+			end
+			if game.Workspace.Thrown.Watchers then
+				for i, v in pairs(game.Workspace.Thrown.Watchers:GetChildren()) do
+					if v:FindFirstChild("RootPart") then
+						pcall(RenderList.AddOrUpdateInstance, RenderList, v, v.RootPart, "Watcher", Color3.fromRGB(7, 43, 244));
+					end
+				end
+			end
+		end;
 	};
 
 	[5735553160] = { -- Deepwoken [Depths]
@@ -550,6 +608,54 @@ local Modules = {
 			end
 
 			return Name;
+		end;
+		CustomESP = function()
+			for i, v in pairs(game.Workspace.Live:GetDescendants()) do
+				if v:IsA("Humanoid") then
+					if not game.Players:FindFirstChild(tostring(v.Parent)) then
+						if v.Parent:FindFirstChild("Head") then
+							local hum = v;
+							local head = v.Parent.Head;
+							local enhancement = "Neutral";
+
+						--[[local enhancement;
+						
+						if enhanced then --find later
+							enhancement = " [Corrupted]";
+						else
+							enhancement = " [Neutral]";
+						end
+						if enhancement == nil then
+							enhancement = "";
+						end]]
+
+							if hum and head then
+								pcall(RenderList.AddOrUpdateInstance, RenderList, v, head, cap(v.Parent.Name).."\n["..math.round(hum.Health).."/"..math.round(hum.MaxHealth).."] ["..enhancement.."] ["..math.round(hum.Health / hum.MaxHealth * 100).." %]", Color3.fromRGB(232, 255, 219));
+							end
+						end
+					end
+				end
+			end
+			for i, v in pairs(game.Workspace.Thrown:GetDescendants()) do
+				if v.Name == "ChestJoint" then
+					local rp = v.Parent.Parent.RootPart;
+
+					if rp then
+						pcall(RenderList.AddOrUpdateInstance, RenderList, v, rp, "Chest", Color3.fromRGB(255, 155, 105));
+					end
+				elseif v.Name == "BagDrop" then
+					pcall(RenderList.AddOrUpdateInstance, RenderList, v, v, "Bag", Color3.fromRGB(255, 155, 105));
+				elseif v.Name == "HoldForge" then
+					pcall(RenderList.AddOrUpdateInstance, RenderList, v.Parent, v, "Artifact", Color3.fromRGB(216, 202, 229));
+				end
+			end
+			if game.Workspace.Thrown.Watchers then
+				for i, v in pairs(game.Workspace.Thrown.Watchers:GetChildren()) do
+					if v:FindFirstChild("RootPart") then
+						pcall(RenderList.AddOrUpdateInstance, RenderList, v, v.RootPart, "Watcher", Color3.fromRGB(7, 43, 244));
+					end
+				end
+			end
 		end;
 	};
 

@@ -527,21 +527,9 @@ local Modules = {
 						if v.Parent:FindFirstChild("Head") then
 							local hum = v;
 							local head = v.Parent.Head;
-							local enhancement = "Neutral";
-
-						--[[local enhancement;
-						
-						if enhanced then --find later
-							enhancement = " [Corrupted]";
-						else
-							enhancement = " [Neutral]";
-						end
-						if enhancement == nil then
-							enhancement = "";
-						end]]
-
+							
 							if hum and head then
-								pcall(RenderList.AddOrUpdateInstance, RenderList, v, head, cap(v.Parent.Name).."\n["..math.round(hum.Health).."/"..math.round(hum.MaxHealth).."] ["..enhancement.."] ["..math.round(hum.Health / hum.MaxHealth * 100).." %]", Color3.fromRGB(232, 255, 219));
+								pcall(RenderList.AddOrUpdateInstance, RenderList, v, head, cap(v.Parent.Name).."\n["..math.round(hum.Health).."/"..math.round(hum.MaxHealth).."] ".." ["..math.round(hum.Health / hum.MaxHealth * 100).." %]", Color3.fromRGB(232, 255, 219));
 							end
 						end
 					end

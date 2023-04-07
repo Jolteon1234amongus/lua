@@ -529,7 +529,7 @@ local Modules = {
 							local head = v.Parent.Head;
 							
 							if hum and head then
-								pcall(RenderList.AddOrUpdateInstance, RenderList, v, head, cap(v.Parent.Name).."\n["..math.round(hum.Health).."/"..math.round(hum.MaxHealth).."] ["..math.round(hum.Health / hum.MaxHealth * 100).." %]", Color3.fromRGB(232, 255, 219));
+								pcall(RenderList.AddOrUpdateInstance, RenderList, v, head, cap(v.Parent.Name).."\n["..math.round(hum.Health).."/"..math.round(hum.MaxHealth).."] ["..math.round(hum.Health / hum.MaxHealth * 100).."%]", Color3.fromRGB(232, 255, 219));
 							end
 						end
 					end
@@ -620,7 +620,7 @@ local Modules = {
 						end]]
 
 							if hum and head then
-								pcall(RenderList.AddOrUpdateInstance, RenderList, v, head, cap(v.Parent.Name).."\n["..math.round(hum.Health).."/"..math.round(hum.MaxHealth).."] ["..enhancement.."] ["..math.round(hum.Health / hum.MaxHealth * 100).." %]", Color3.fromRGB(232, 255, 219));
+								pcall(RenderList.AddOrUpdateInstance, RenderList, v, head, cap(v.Parent.Name).."\n["..math.round(hum.Health).."/"..math.round(hum.MaxHealth).."] ["..enhancement.."] ["..math.round(hum.Health / hum.MaxHealth * 100).."%]", Color3.fromRGB(232, 255, 219));
 							end
 						end
 					end

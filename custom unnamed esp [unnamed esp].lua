@@ -527,7 +527,7 @@ local Modules = {
 						if v.Parent:FindFirstChild("Head") then
 							local hum = v;
 							local head = v.Parent.Head;
-							
+
 							if hum and head then
 								pcall(RenderList.AddOrUpdateInstance, RenderList, v, head, cap(v.Parent.Name).."\n["..math.round(hum.Health).."/"..math.round(hum.MaxHealth).."] ["..math.round(hum.Health / hum.MaxHealth * 100).."%]", Color3.fromRGB(232, 255, 219));
 							end
@@ -621,6 +621,81 @@ local Modules = {
 
 							if hum and head then
 								pcall(RenderList.AddOrUpdateInstance, RenderList, v, head, cap(v.Parent.Name).."\n["..math.round(hum.Health).."/"..math.round(hum.MaxHealth).."] ["..enhancement.."] ["..math.round(hum.Health / hum.MaxHealth * 100).."%]", Color3.fromRGB(232, 255, 219));
+							end
+						end
+					end
+				end
+			end
+			for i, v in pairs(game.Workspace.Thrown:GetDescendants()) do
+				if v.Name == "ChestJoint" then
+					local rp = v.Parent.Parent.RootPart;
+
+					if rp then
+						pcall(RenderList.AddOrUpdateInstance, RenderList, v, rp, "Chest", Color3.fromRGB(255, 155, 105));
+					end
+				elseif v.Name == "BagDrop" then
+					pcall(RenderList.AddOrUpdateInstance, RenderList, v, v, "Bag", Color3.fromRGB(255, 155, 105));
+				elseif v.Name == "HoldForge" then
+					pcall(RenderList.AddOrUpdateInstance, RenderList, v.Parent, v, "Artifact", Color3.fromRGB(216, 202, 229));
+				end
+			end
+			if game.Workspace.Thrown.Watchers then
+				for i, v in pairs(game.Workspace.Thrown.Watchers:GetChildren()) do
+					if v:FindFirstChild("RootPart") then
+						pcall(RenderList.AddOrUpdateInstance, RenderList, v, v.RootPart, "Watcher", Color3.fromRGB(7, 43, 244));
+					end
+				end
+			end
+		end;
+	};
+	
+	[6473861193] = { -- Deepwoken [Eastern Luminant]
+		CustomPlayerTag = function(Player)
+			local Name = '';
+			CharacterName = Player:GetAttribute'CharacterName'; -- could use leaderstats but lazy
+
+			if not IsStringEmpty(CharacterName) then
+				Name = ('\n[%s]'):format(CharacterName);
+				local Character = GetCharacter(Player);
+				local Extra = {};
+
+				if Character then
+					local Blood, Armor = Character:FindFirstChild('Blood'), Character:FindFirstChild('Armor');
+
+					if Blood and Blood.ClassName == 'DoubleConstrainedValue' then
+						table.insert(Extra, ('B%d'):format(Blood.Value));
+					end
+
+					if Armor and Armor.ClassName == 'DoubleConstrainedValue' then
+						table.insert(Extra, ('A%d'):format(math.floor(Armor.Value / 10)));
+					end
+				end
+
+				local BackpackChildren = Player.Backpack:GetChildren()
+
+				for index = 1, #BackpackChildren do
+					local Oath = BackpackChildren[index]
+					if Oath.ClassName == 'Folder' and Oath.Name:find('Talent:Oath') then
+						local OathName = Oath.Name:gsub('Talent:Oath: ', '')
+						table.insert(Extra, OathName);
+					end
+				end
+
+				if #Extra > 0 then Name = Name .. ' [' .. table.concat(Extra, '-') .. ']'; end
+			end
+
+			return Name;
+		end;
+		CustomESP = function()
+			for i, v in pairs(game.Workspace.Live:GetDescendants()) do
+				if v:IsA("Humanoid") then
+					if not game.Players:FindFirstChild(tostring(v.Parent)) then
+						if v.Parent:FindFirstChild("Head") then
+							local hum = v;
+							local head = v.Parent.Head;
+
+							if hum and head then
+								pcall(RenderList.AddOrUpdateInstance, RenderList, v, head, cap(v.Parent.Name).."\n["..math.round(hum.Health).."/"..math.round(hum.MaxHealth).."] ["..math.round(hum.Health / hum.MaxHealth * 100).."%]", Color3.fromRGB(232, 255, 219));
 							end
 						end
 					end

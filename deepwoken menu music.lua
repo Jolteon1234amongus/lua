@@ -1,6 +1,8 @@
---this script will change the deepwoken menu music to the april fools deepwoken menu music even when it is not april first
---made by Zeehk334
-
+--[[
+PUT THIS IN YOUR AUTOEXECUTE
+this script will change the deepwoken menu music to the april fools deepwoken menu music even when it is not april first
+made by Zeehk334
+]]
 
 if not game:IsLoaded() then
 	game.Loaded:Wait()

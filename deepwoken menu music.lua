@@ -1,6 +1,6 @@
 --[[
 PUT THIS IN YOUR AUTOEXECUTE
-this script will change the deepwoken menu music to the april fools deepwoken menu music even when it is not april first
+this script will change the deepwoken menu music to the april fools deepwoken menu music even when it is not april 1st
 made by Zeehk334
 ]]
 
